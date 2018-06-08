@@ -8,4 +8,3 @@ def get_info(url):
     response = requests.get(url)
     if response.status_code ==200:
         soup = BeautifulSoup(response.text,'lxml')
-        print(soup.title.string)
