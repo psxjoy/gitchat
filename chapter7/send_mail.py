@@ -14,14 +14,14 @@ def _format_addr(s):
     return formataddr((Header(name, 'utf-8').encode(), addr))
 def send_mail(text):
 
-    from_addr = 'psxjoy@163.com'
-    password = 'SUPERPSX1995'
-    to_addr = '215403065@qq.com'
-    smtp_server ='smtp.163.com'
+    from_addr = '你的邮箱地址'
+    password = '你的邮箱地址密码'
+    to_addr = '收件人的邮箱地址'
+    smtp_server ='你邮箱的smtp服务器地址'
 
     msg = MIMEText(text, 'plain', 'utf-8')
     msg['From'] = _format_addr('网易大新闻 <%s>' % from_addr)
-    msg['To'] = _format_addr('管理员 <%s>' % to_addr)
+    msg['To'] = _format_addr('收件人 <%s>' % to_addr)
     msg['Subject'] = Header('网易新闻提醒', 'utf-8').encode()
 
     server = smtplib.SMTP(smtp_server, 25)
