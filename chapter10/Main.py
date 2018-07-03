@@ -1,5 +1,5 @@
-from chapter9.crwal_info import get_info
-from chapter9.send_sms import send_sms
+from chapter10.crwal_info import get_info
+from chapter10.send_sms import send_sms
 import time
 
 if __name__ == '__main__':
