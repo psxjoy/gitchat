@@ -30,8 +30,6 @@ chengji_page = 'http://jwxt.XXXX.edu.cn/(11u1r0nxil4tad2fqw315a55)/xscj_gc.aspx?
 header = {
     'Referer':'http://jwxt.XXXX.edu.cn/(11u1r0nxil4tad2fqw315a55)/xscj_gc.aspx?xh=1141314818&xm=%D6%DC%C3%FA%BD%DC&gnmkdm=N121605',
     'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.110 Safari/537.36'
-
-
 }
 response = s.get(chengji_page,headers=header)
 __VIEWSTATE= get_view(response)
@@ -81,14 +79,8 @@ for score in Grades:
     grade = grade.join(str(score["grade"]))
     grade = str(grade)
     if name not in juage:
-        send_mail(year, term, name, type, credit, gradePoint, grade)
         juage.append(name)
     else:
         print("已经存在，不发送短信")
 
-    int result = select_info(name)
-    if result!=0:
-        time.sleep(60*60)
-    else:
-        send_mail(year,term,name,type,credit,gradePoint,grade)
-    insert_info(year,term,name,type,credit,gradePoint,grade)
+
