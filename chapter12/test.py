@@ -1,3 +1,7 @@
+'''
+用于插入数据
+'''
+
 import pymysql
 db = pymysql.connect("localhost","root","654321","mysql" )
 cursor = db.cursor()

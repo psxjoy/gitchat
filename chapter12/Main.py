@@ -1,7 +1,10 @@
+'''
+非验证码获取成绩
+'''
 # coding=gbk
 import requests
 from bs4 import BeautifulSoup
-from chapter12.vertify_code import get_view
+from chapter12.function import get_VIEWSTATE
 import time
 from chapter12.test import insert_info
 username='XXXXXX'
@@ -24,15 +27,15 @@ data = {
 }
 web_data = s.post(url=url,data=data)
 print("成功登陆教务系统！")
-baseUrl = 'http://jwxt.XXXX.edu.cn/(11u1r0nxil4tad2fqw315a55)/xs_main.aspx?xh=1141314818'
+baseUrl = 'http://jwxt.XXXX.edu.cn/(11u1r0nxil4tad2fqw315a55)/xs_main.aspx?xh=XXXX'
 main_title = s.get(baseUrl)
-chengji_page = 'http://jwxt.XXXX.edu.cn/(11u1r0nxil4tad2fqw315a55)/xscj_gc.aspx?xh=1141314818&xm=%D6%DC%C3%FA%BD%DC&gnmkdm=N121605'
+chengji_page = 'http://jwxt.XXXX.edu.cn/(11u1r0nxil4tad2fqw315a55)/xscj_gc.aspx?xh=XXXX&xm=%D6%DC%C3%FA%BD%DC&gnmkdm=N121605'
 header = {
-    'Referer':'http://jwxt.XXXX.edu.cn/(11u1r0nxil4tad2fqw315a55)/xscj_gc.aspx?xh=1141314818&xm=%D6%DC%C3%FA%BD%DC&gnmkdm=N121605',
+    'Referer':'http://jwxt.XXXX.edu.cn/(11u1r0nxil4tad2fqw315a55)/xscj_gc.aspx?xh=XXXX&xm=%D6%DC%C3%FA%BD%DC&gnmkdm=N121605',
     'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.110 Safari/537.36'
 }
 response = s.get(chengji_page,headers=header)
-__VIEWSTATE= get_view(response)
+__VIEWSTATE= get_VIEWSTATE(response)
 data1 = {
             "__VIEWSTATE":__VIEWSTATE,
             "ddlXN":"2016-2017",
