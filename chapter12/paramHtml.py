@@ -42,6 +42,7 @@ data = {
     '__VIEWSTATE':viewState,
     'TextBox1':username,
     'TextBox2':password,
+    'TextBox3':code,
     'RadioButtonList1':RadioButtonList1,
     'Button1':''
 }
