@@ -50,7 +50,7 @@ data = {
 web_data = s.post(url=url,data=data,headers=HEA)
 print("成功登陆教务系统！")
 baseUrl = 'http://jwxt.XXXX.edu.cn/(11u1r0nxil4tad2fqw315a55)/xs_main.aspx?xh=XXXXXX'
-main_title = response.get(baseUrl)
+main_title = s.get(baseUrl)
 chengji_page = 'http://jwxt.XXXX.edu.cn/(11u1r0nxil4tad2fqw315a55)/xscj_gc.aspx?xh=XXXX&xm=%D6%DC%C3%FA%BD%DC&gnmkdm=N121605'
 header = {
     'Referer':'http://jwxt.XXXX.edu.cn/(11u1r0nxil4tad2fqw315a55)/xscj_gc.aspx?xh=XXXX&xm=%D6%DC%C3%FA%BD%DC&gnmkdm=N121605',
