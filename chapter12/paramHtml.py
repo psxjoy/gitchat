@@ -13,18 +13,19 @@ HEA = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/'
                      '537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36',
        }
 
-response = requests.get(url,HEA)
+s = requests.session()
+response = s.get(url,HEA)
 if response.status_code=='OK':
     soup = BeautifulSoup(response.text,'lxml')
 else:
-    hash_url = response.headers['Content-Type']
+    hash_url = s.headers['Content-Type']
     url = 'http://jwxt.xxxx.edu.cn/('+hash_url+')/default_ysdx.aspx'
-    response = requests.get(url,HEA)
+    response = s.get(url,HEA)
     soup = BeautifulSoup(response.text, 'lxml')
 viewState = soup.find('input', attrs={'name': '__VIEWSTATE'})['value']
 RadioButtonList1 = u"学生".encode('gb2312','replace')
 imgUrl = "targeturl"
-imgresponse = response.get(imgUrl, stream=True)
+imgresponse = s.get(imgUrl, stream=True)
 
 image = imgresponse.content
 DstDir = os.getcwd()+"\\"
@@ -46,7 +47,7 @@ data = {
     'RadioButtonList1':RadioButtonList1,
     'Button1':''
 }
-web_data = requests.post(url=url,data=data,headers=HEA)
+web_data = s.post(url=url,data=data,headers=HEA)
 print("成功登陆教务系统！")
 baseUrl = 'http://jwxt.XXXX.edu.cn/(11u1r0nxil4tad2fqw315a55)/xs_main.aspx?xh=XXXXXX'
 main_title = response.get(baseUrl)
@@ -55,7 +56,7 @@ header = {
     'Referer':'http://jwxt.XXXX.edu.cn/(11u1r0nxil4tad2fqw315a55)/xscj_gc.aspx?xh=XXXX&xm=%D6%DC%C3%FA%BD%DC&gnmkdm=N121605',
     'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.110 Safari/537.36'
 }
-response = response.get(chengji_page,headers=header)
+response = s.get(chengji_page,headers=header)
 __VIEWSTATE= get_VIEWSTATE(response)
 data1 = {
             "__VIEWSTATE":__VIEWSTATE,
@@ -64,7 +65,7 @@ data1 = {
             "Button1":""
 }
 time.sleep(3)
-chengji = response.post(chengji_page,data=data1)
+chengji = s.post(chengji_page,data=data1)
 chengji.encoding='gb2312'
 soup = BeautifulSoup(chengji.content, "lxml",from_encoding="gb18030")
 trs = soup.find(id="Datagrid1").findAll("tr")
@@ -106,4 +107,3 @@ for score in Grades:
         juage.append(name)
     else:
         print("已经存在，不发送短信")
-
